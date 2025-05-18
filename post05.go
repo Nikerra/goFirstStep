@@ -50,7 +50,7 @@ func exists(username string) int {
     defer db.Close()
 
     userID := -1
-    statement := fmt.SprintF(`select "id" from "users" where username = '%s'`, username)
+    statement := fmt.Sprintf(`select "id" from "users" where username = '%s'`, username)
     rows, err := db.Query(statement)
 
     for rows.Next() {
@@ -116,7 +116,7 @@ func DeleteUser(id int) error {
     }
     defer db.Close()
 
-    statement := fmt.SprintF(`select "username" from "users" where id = %d`, id)
+    statement := fmt.Sprintf(`select "username" from "users" where id = %d`, id)
     rows, err := db.Query(statement)
 
     var username string
@@ -147,7 +147,7 @@ func DeleteUser(id int) error {
     return nil
 }
 
-func ListUsers() ([]Userdata, err) {
+func ListUsers() ([]Userdata, error) {
     Data := []Userdata{}
     db, err := openConnection()
     if err != nil {
@@ -163,7 +163,7 @@ func ListUsers() ([]Userdata, err) {
         return Data, err
     }
 
-    for rows.Next {
+    for rows.Next() {
         var id int
         var username string
         var name string
