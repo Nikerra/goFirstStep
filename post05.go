@@ -97,7 +97,7 @@ func AddUser(ud Userdata) int {
         return userID
     }
 
-    insertStatement = `insert into "userdata" ("userid", "name", "surname", "description"`) values ($1, $2, $3, $4)
+    insertStatement = `insert into "userdata" ("userid", "name", "surname", "description") values ($1, $2, $3, $4)`
 
     _, err = db.Exec(insertStatement, userID, ud.Name, ud.Surname, ud.Description)
     if err != nil {
